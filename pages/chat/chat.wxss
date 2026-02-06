@@ -77,6 +77,10 @@
   margin-bottom: 12rpx;
 }
 
+.reference-item:last-child {
+  margin-bottom: 0;
+}
+
 .reference-row {
   display: flex;
   align-items: flex-start;
@@ -108,6 +112,10 @@
   color: #4a5676;
   flex: 1;
   word-break: break-word;
+}
+
+.reference-link {
+  color: #3b6df6;
 }
 
 .input-bar {
