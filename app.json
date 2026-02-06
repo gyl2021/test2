@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/chat/chat"
+  ],
+  "window": {
+    "navigationBarTitleText": "Dify Agent 对话",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "light"
+  }
+}
