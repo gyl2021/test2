@@ -88,7 +88,10 @@ Page({
       payload.references,
       metadata.references,
       metadata.sources,
-      metadata.refs
+      metadata.refs,
+      metadata['retriever resources'],
+      metadata.retriever_resources,
+      metadata.retrieverResources
     ];
 
     const references = candidates.find((item) => Array.isArray(item) && item.length > 0);
@@ -97,9 +100,14 @@ Page({
     }
 
     return references.map((item) => ({
-      title: item.title || item.document_name || item.file_name || '未命名文件',
-      url: item.url || item.source_url || '',
-      page: item.page || item.page_number || ''
+      title: item.title
+        || item.document_name
+        || item.documentName
+        || item.file_name
+        || item.fileName
+        || '未命名文件',
+      url: item.url || item.source_url || item.sourceUrl || '',
+      page: item.page || item.page_number || item.pageNumber || item.segment_position || ''
     }));
   }
 });

@@ -22,6 +22,8 @@ Dify 返回的引用字段可能在不同位置，本示例会优先从以下字
 - `payload.metadata.references`
 - `payload.metadata.sources`
 - `payload.metadata.refs`
+- `payload.metadata["retriever resources"]`
+- `payload.metadata.retriever_resources`
 
 如果返回了引用信息，会在助手回复下方展示“引用文件信息”。
 若未返回引用信息，会展示“暂无引用文件信息”，并可开启调试查看原始响应。
