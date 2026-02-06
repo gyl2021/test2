@@ -1,0 +1,55 @@
+<view class="container">
+  <scroll-view
+    class="chat-list"
+    scroll-y
+    scroll-with-animation
+    scroll-into-view="{{scrollAnchor}}"
+  >
+    <block wx:for="{{messages}}" wx:key="id">
+      <view class="message-item {{item.role}}" id="message-{{index}}">
+        <view class="bubble">
+          <text class="content">{{item.content}}</text>
+        </view>
+        <view wx:if="{{item.references.length}}" class="references">
+          <view class="references-header">
+            <text class="references-title">引用文件信息</text>
+            <text class="references-count">{{item.references.length}} 条</text>
+          </view>
+          <block wx:for="{{item.references}}" wx:key="index">
+            <view class="reference-item">
+              <view class="reference-row">
+                <text class="reference-label">文件</text>
+                <text class="reference-name">{{item.title}}</text>
+              </view>
+              <view wx:if="{{item.page}}" class="reference-row">
+                <text class="reference-label">页码</text>
+                <text class="reference-meta">{{item.page}}</text>
+              </view>
+              <view wx:if="{{item.url}}" class="reference-row">
+                <text class="reference-label">链接</text>
+                <text class="reference-link">{{item.url}}</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="input-bar">
+    <input
+      class="input"
+      placeholder="输入你的问题"
+      value="{{inputValue}}"
+      bindinput="onInput"
+      confirm-type="send"
+      bindconfirm="sendMessage"
+    />
+    <button
+      class="send-button"
+      type="primary"
+      loading="{{loading}}"
+      bindtap="sendMessage"
+    >发送</button>
+  </view>
+</view>
