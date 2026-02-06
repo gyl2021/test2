@@ -11,24 +11,12 @@
           <text class="content">{{item.content}}</text>
         </view>
         <view wx:if="{{item.references.length}}" class="references">
-          <view class="references-header">
-            <text class="references-title">引用文件信息</text>
-            <text class="references-count">{{item.references.length}} 条</text>
-          </view>
+          <text class="references-title">引用文件信息</text>
           <block wx:for="{{item.references}}" wx:key="index">
             <view class="reference-item">
-              <view class="reference-row">
-                <text class="reference-label">文件</text>
-                <text class="reference-name" selectable>{{item.title}}</text>
-              </view>
-              <view wx:if="{{item.page}}" class="reference-row">
-                <text class="reference-label">页码</text>
-                <text class="reference-meta">{{item.page}}</text>
-              </view>
-              <view wx:if="{{item.url}}" class="reference-row">
-                <text class="reference-label">链接</text>
-                <text class="reference-link" selectable>{{item.url}}</text>
-              </view>
+              <text class="reference-name">{{item.title}}</text>
+              <text wx:if="{{item.page}}" class="reference-meta">页码：{{item.page}}</text>
+              <text wx:if="{{item.url}}" class="reference-link">{{item.url}}</text>
             </view>
           </block>
         </view>
