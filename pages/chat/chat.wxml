@@ -32,10 +32,6 @@
             </view>
           </block>
         </view>
-        <view wx:if="{{!item.hasReferences}}" class="references references-empty">
-          <text class="references-title">引用文件信息</text>
-          <text class="references-empty-text">暂无引用文件信息</text>
-        </view>
         <view wx:if="{{showDebug && item.debugText}}" class="debug-panel">
           <text class="debug-title">调试信息（原始响应）</text>
           <text class="debug-content" selectable>{{item.debugText}}</text>

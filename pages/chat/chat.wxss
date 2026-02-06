@@ -51,17 +51,6 @@
   box-sizing: border-box;
 }
 
-.references-empty {
-  background: #f7f8fc;
-}
-
-.references-empty-text {
-  font-size: 22rpx;
-  color: #9aa3b2;
-  margin-top: 8rpx;
-  display: block;
-}
-
 .references-header {
   display: flex;
   align-items: center;
