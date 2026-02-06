@@ -38,6 +38,7 @@
 .content {
   font-size: 28rpx;
   line-height: 1.6;
+  letter-spacing: 0.5rpx;
   word-break: break-word;
 }
 
@@ -50,31 +51,105 @@
   box-sizing: border-box;
 }
 
+.references-empty {
+  background: #f7f8fc;
+}
+
+.references-empty-text {
+  font-size: 22rpx;
+  color: #9aa3b2;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.references-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
 .references-title {
   font-size: 24rpx;
   font-weight: 600;
   color: #3d4c78;
-  margin-bottom: 8rpx;
+}
+
+.references-count {
+  font-size: 22rpx;
+  color: #7a869a;
 }
 
 .reference-item {
-  margin-top: 8rpx;
-  font-size: 24rpx;
-  color: #4a5676;
+  padding: 12rpx;
+  border-radius: 12rpx;
+  background: #ffffff;
+  box-shadow: 0 4rpx 10rpx rgba(61, 76, 120, 0.08);
+  margin-bottom: 12rpx;
+}
+
+.reference-item:last-child {
+  margin-bottom: 0;
+}
+
+.reference-row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 6rpx;
+}
+
+.reference-row:last-child {
+  margin-bottom: 0;
+}
+
+.reference-label {
+  min-width: 64rpx;
+  font-size: 22rpx;
+  color: #7a869a;
+  margin-right: 12rpx;
 }
 
 .reference-name {
-  display: block;
-  font-weight: 500;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #3d4c78;
+  flex: 1;
+  word-break: break-word;
 }
 
 .reference-meta,
 .reference-link {
-  display: block;
   font-size: 22rpx;
-  color: #7a869a;
-  margin-top: 4rpx;
+  color: #4a5676;
+  flex: 1;
   word-break: break-word;
+}
+
+.reference-link {
+  color: #3b6df6;
+}
+
+.debug-panel {
+  margin-top: 12rpx;
+  padding: 16rpx;
+  border-radius: 16rpx;
+  background: #1f2430;
+  color: #ffffff;
+}
+
+.debug-title {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #a8b3cf;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.debug-content {
+  font-size: 20rpx;
+  line-height: 1.6;
+  word-break: break-all;
+  white-space: pre-wrap;
 }
 
 .input-bar {

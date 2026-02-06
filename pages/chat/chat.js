@@ -1,11 +1,13 @@
 const { sendChatMessage } = require('../../utils/api');
+const config = require('../../utils/config');
 
 Page({
   data: {
     inputValue: '',
     loading: false,
     conversationId: '',
-    messages: []
+    messages: [],
+    showDebug: config.showDebug
   },
 
   onLoad() {
@@ -38,13 +40,23 @@ Page({
       const references = this.extractReferences(response);
 
       this.setData({ conversationId });
-      this.appendMessage({ role: 'assistant', content: reply, references });
+      this.appendMessage({
+        role: 'assistant',
+        content: reply,
+        references,
+        rawPayload: this.data.showDebug ? response : null
+      });
     } catch (error) {
       const errorText = error && error.data && error.data.message
         ? error.data.message
         : '请求失败，请检查网络或 API 配置。';
 
-      this.appendMessage({ role: 'assistant', content: errorText, references: [] });
+      this.appendMessage({
+        role: 'assistant',
+        content: errorText,
+        references: [],
+        rawPayload: this.data.showDebug ? error : null
+      });
     } finally {
       this.setData({ loading: false });
     }
@@ -53,7 +65,11 @@ Page({
   appendMessage(message) {
     const updated = this.data.messages.concat({
       ...message,
-      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`
+      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+      hasReferences: Array.isArray(message.references) && message.references.length > 0,
+      debugText: message.rawPayload
+        ? JSON.stringify(message.rawPayload, null, 2)
+        : ''
     });
     this.setData({ messages: updated }, () => {
       this.scrollToBottom();
