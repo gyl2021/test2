@@ -47,19 +47,42 @@ Page({
         rawPayload: this.data.showDebug ? response : null
       });
     } catch (error) {
-      const errorText = error && error.data && error.data.message
-        ? error.data.message
-        : '请求失败，请检查网络或 API 配置。';
-
       this.appendMessage({
         role: 'assistant',
-        content: errorText,
+        content: this.formatErrorMessage(error),
         references: [],
         rawPayload: this.data.showDebug ? error : null
       });
     } finally {
       this.setData({ loading: false });
     }
+  },
+
+  formatErrorMessage(error) {
+    const backendMessage = error && error.data && error.data.message ? error.data.message : '';
+    const statusCode = error && error.statusCode ? error.statusCode : 0;
+    const errMsg = error && error.errMsg ? error.errMsg : '';
+
+    if (backendMessage) {
+      return `请求失败：${backendMessage}`;
+    }
+
+    if (errMsg && errMsg.includes('request:fail')) {
+      return [
+        '请求失败：网络异常。',
+        '请检查：',
+        '1. 小程序 request 合法域名是否已加入 https://api.dify.ai',
+        '2. apiBaseUrl 是否为 HTTPS 且可访问',
+        '3. 设备网络是否正常（可切换 Wi-Fi / 蜂窝网络重试）',
+        `原始错误：${errMsg}`
+      ].join('\n');
+    }
+
+    if (statusCode >= 400) {
+      return `请求失败：HTTP ${statusCode}，请检查 API Key、应用配置或接口权限。`;
+    }
+
+    return '请求失败，请检查网络或 API 配置。';
   },
 
   appendMessage(message) {

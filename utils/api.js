@@ -6,6 +6,7 @@ const request = (options = {}) => {
       url: `${config.apiBaseUrl}${options.url}`,
       method: options.method || 'POST',
       data: options.data || {},
+      timeout: options.timeout || 30000,
       header: {
         Authorization: `Bearer ${config.apiKey}`,
         'Content-Type': 'application/json'
@@ -17,7 +18,12 @@ const request = (options = {}) => {
           reject(res);
         }
       },
-      fail: reject
+      fail: (err) => {
+        reject({
+          ...err,
+          tip: '请检查小程序 request 合法域名、HTTPS 配置和当前网络状态'
+        });
+      }
     });
   });
 };
