@@ -1,0 +1,9 @@
+{
+  "appid": "touristappid",
+  "projectname": "dify-agent-mini-program",
+  "compileType": "miniprogram",
+  "libVersion": "2.32.3",
+  "setting": {
+    "urlCheck": false
+  }
+}
